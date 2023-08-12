@@ -1,11 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import urls from "@/constant/urls";
 import useGet from "@/hooks/useGet";
-import usePost from "@/hooks/usePost";
-import randomColor from "@/utils/colorRandomizer";
-import axios from "axios";
 import { motion } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoClose, IoSend } from "react-icons/io5";
 import io from 'socket.io-client'
 import CommentItem from "./components/CommentItem";
