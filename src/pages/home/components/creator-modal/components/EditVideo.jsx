@@ -1,14 +1,14 @@
+/* eslint-disable react/prop-types */
 import urls from "@/constant/urls";
 import useGet from "@/hooks/useGet";
 import AuthCredentials from "@/service/auth/AuthCredentials";
 import headerWithBearer from "@/utils/headerWithBearer";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BiQuestionMark } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import usePost from "@/hooks/usePost";
 
 function EditVideo({setModalCreator}) {
   const Auth = new AuthCredentials();

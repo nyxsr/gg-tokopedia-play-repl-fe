@@ -10,7 +10,7 @@ import { IoClose, IoSend } from "react-icons/io5";
 import io from 'socket.io-client'
 import CommentItem from "./components/CommentItem";
 import AuthCredentials from "@/service/auth/AuthCredentials";
-const socket = io('http://localhost:3000')
+const socket = io(urls.baseUrlWithoutApi)
 
 function index({ id, setToggleComments }) {
   const { data, loading, success, error} = useGet(
