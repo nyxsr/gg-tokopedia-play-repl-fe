@@ -95,19 +95,19 @@ function EditVideo({setModalCreator}) {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="p-2 min-w-[80vw] text-black bg-white shadow-md rounded-lg"
+      className="p-4 md:p-2 min-w-[80vw] text-black overflow-y-auto bg-white shadow-md md:rounded-lg"
     >
       <p className="font-medium">Edit Video</p>
-      <select onChange={handleSelectVideo} name="" id="" className="border px-2 py-1 rounded-md text-sm">
+      <select onChange={handleSelectVideo} name="" id="" className="border max-w-full px-2 py-1 rounded-md text-sm">
         <option value="">Pilih Video</option>
         {videoOpt?.map((video)=>(
             <option key={video._id} value={JSON.stringify(video)}>{video.title}</option>
         ))}
       </select>
-      <div className="flex justify-between">
+      <div className="flex gap-5 md:gap-0 flex-col md:flex-row justify-between">
         <form
           onSubmit={handleSubmit(onEdit)}
-          className=" w-[70%] mt-3 flex flex-col gap-3"
+          className="w-full md:w-[70%] mt-3 flex flex-col gap-3"
         >
           <div>
             <label htmlFor="" className="text-sm">
@@ -218,7 +218,7 @@ function EditVideo({setModalCreator}) {
             </button>
           </div>
         </form>
-        <motion.div className="w-[25%] md:h-[25rem] rounded-lg relative cursor-pointer">
+        <motion.div className="w-full md:w-[25%] max-h-full md:h-[25rem] rounded-lg relative cursor-pointer">
           <motion.img
             initial={{ filter: "blur(5px)" }}
             animate={{

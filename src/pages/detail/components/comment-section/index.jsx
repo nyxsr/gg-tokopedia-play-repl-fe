@@ -7,6 +7,7 @@ import { IoClose, IoSend } from "react-icons/io5";
 import io from 'socket.io-client'
 import CommentItem from "./components/CommentItem";
 import AuthCredentials from "@/service/auth/AuthCredentials";
+import { isMobile } from "react-device-detect";
 const socket = io(urls.baseUrlWithoutApi)
 
 function index({ id, setToggleComments }) {
@@ -53,7 +54,7 @@ function index({ id, setToggleComments }) {
   return (
     <motion.div
       initial={{ width: 0 }}
-      animate={{ width: "20rem" }}
+      animate={{ width: isMobile ? "100%" : "20rem" }}
       exit={{ width: 0 }}
       className="fixed shadow-xl top-0 flex flex-col flex-wrap right-0 h-screen bg-[#1c1c1c] z-20"
     >

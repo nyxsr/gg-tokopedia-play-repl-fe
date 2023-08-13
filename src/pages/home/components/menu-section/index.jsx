@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { IoClose } from "react-icons/io5";
 import { RiUser5Fill } from "react-icons/ri";
 import AuthCredentials from "@/service/auth/AuthCredentials";
+import {isMobile} from 'react-device-detect'
 
 function index({ setToggleMenu }) {
   const Auth = new AuthCredentials();
@@ -58,7 +59,7 @@ function index({ setToggleMenu }) {
       <motion.div
         onClick={(e) => e.stopPropagation()}
         initial={{ width: 0 }}
-        animate={{ width: "25%" }}
+        animate={{ width: isMobile ? "100%" : "25%" }}
         exit={{ width: 0 }}
         className="h-full relative flex gap-5 flex-col items-center px-3 justify-center bg-[#232327]"
       >

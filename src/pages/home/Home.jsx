@@ -14,6 +14,7 @@ import CreatorModal from "./components/creator-modal";
 import AuthCredentials from "@/service/auth/AuthCredentials";
 import { MdAddBox, MdDeleteForever } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
+import { isMobile } from "react-device-detect";
 
 function Home() {
   const Auth = new AuthCredentials();
@@ -65,7 +66,7 @@ function Home() {
     refetch();
   }, [category]);
   return (
-    <div className="text-white mx-5">
+    <div className="text-white mx-5 mb-5">
       <AnimatePresence>
         {toggleSearch && (
           <SearchSection
@@ -95,23 +96,23 @@ function Home() {
         <div className="flex items-center gap-3">
           {credentials && (
             <div className="relative">
-              <button onClick={()=>setToggleCreator(toggleCreator ? false : true)} className="p-2 border rounded-xl text-sm border-green-500 bg-green-500/30 text-green-500">
-                Creator Mode
+              <button onClick={()=>setToggleCreator(toggleCreator ? false : true)} className="p-2 border rounded-xl text-xs md:text-sm border-green-500 bg-green-500/30 text-green-500">
+                {isMobile ? 'Creator' : 'Creator Mode'}
               </button>
               <AnimatePresence>
                 {toggleCreator && (
-                <motion.div initial={{ x:100,opacity:0,scale:.5,y:-30 }} animate={{ x:0,opacity:1,scale:1,y:0 }} exit={{ x:100,opacity:0,scale:.5,y:-30 }} className="gap-2 z-10 absolute flex items-center justify-center -bottom-24 -left-[20rem] p-4 bg-[#232327] rounded-md">
-                  <motion.button onClick={()=>{setModalCreator({is:true,type:'add'});setToggleCreator(false)}} whileHover={{ scale:1.05 }} className="bg-white transition-all hover:bg-white/80 w-[8rem] text-black p-1 rounded-md flex flex-col items-center gap-2">
+                <motion.div initial={{ x:100,opacity:0,scale:.5,y:-30 }} animate={{ x:0,opacity:1,scale:1,y:0 }} exit={{ x:100,opacity:0,scale:.5,y:-30 }} className="gap-2 z-10 absolute flex items-center justify-center -bottom-24 -left-[12rem] md:-left-[20rem] p-4 bg-[#232327] rounded-md">
+                  <motion.button onClick={()=>{setModalCreator({is:true,type:'add'});setToggleCreator(false)}} whileHover={{ scale:1.05 }} className="bg-white transition-all hover:bg-white/80 w-[5rem] md:text-sm md:w-[8rem] text-black p-1 rounded-md flex flex-col items-center gap-2">
                     <MdAddBox />
-                    <p className="text-sm text-center">Tambah Video</p>
+                    <p className="text-sm text-center">{isMobile ? 'Tambah' : 'Tambah Video'} </p>
                   </motion.button>
-                  <motion.button onClick={()=>{setModalCreator({is:true,type:'edit'});setToggleCreator(false)}} whileHover={{ scale:1.05 }} className="bg-white transition-all hover:bg-white/80 w-[8rem] text-black p-1 rounded-md flex flex-col items-center gap-2">
+                  <motion.button onClick={()=>{setModalCreator({is:true,type:'edit'});setToggleCreator(false)}} whileHover={{ scale:1.05 }} className="bg-white transition-all hover:bg-white/80 w-[5rem] md:text-sm md:w-[8rem] text-black p-1 rounded-md flex flex-col items-center gap-2">
                     <BiEdit />
-                    <p className="text-sm text-center">Edit Video</p>
+                    <p className="text-sm text-center">{isMobile ? 'Edit' : 'Edit Video'} </p>
                   </motion.button>
-                  <motion.button onClick={()=>{setModalCreator({is:true,type:'delete'});setToggleCreator(false)}} whileHover={{ scale:1.05 }} className="bg-white transition-all hover:bg-white/80 w-[8rem] text-black p-1 rounded-md flex flex-col items-center gap-2">
+                  <motion.button onClick={()=>{setModalCreator({is:true,type:'delete'});setToggleCreator(false)}} whileHover={{ scale:1.05 }} className="bg-white transition-all hover:bg-white/80 w-[5rem] md:text-sm md:w-[8rem] text-black p-1 rounded-md flex flex-col items-center gap-2">
                     <MdDeleteForever />
-                    <p className="text-sm text-center">Hapus Video</p>
+                    <p className="text-sm text-center">{isMobile ? 'Hapus' : 'Hapus Video'} </p>
                   </motion.button>
                 </motion.div>
                 )}

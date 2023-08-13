@@ -10,7 +10,7 @@ function index({modalCreator, setModalCreator}) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed top-0 left-0 w-screen flex items-center justify-center h-screen bg-white/50 z-20"
+      className="fixed top-0 left-0 w-screen h-screen overflow-y-auto flex md:items-center md:justify-center md:h-screen bg-white/50 z-20"
     >
         {modalCreator.type === 'add' && <AddVideo setModalCreator={setModalCreator}/>}
         {modalCreator.type === 'edit' && <EditVideo setModalCreator={setModalCreator}/>}

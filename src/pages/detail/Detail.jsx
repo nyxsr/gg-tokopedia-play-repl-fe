@@ -7,6 +7,7 @@ import { BsChevronCompactLeft } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import ProductsSection from './components/product-section'
 import CommentsSection from './components/comment-section'
+import { isMobile } from "react-device-detect";
 
 function Detail({id, urlThumbnail, src }) {
     const navigate = useNavigate();
@@ -22,10 +23,10 @@ function Detail({id, urlThumbnail, src }) {
       {!toggleProducts && <motion.button exit={{ x:-100 }} animate={{ x:0,transition:{
         duration:.3,
         ease:'linear'
-      } }} initial={{ x:-100 }} className="fixed top-5 left-5 text-4xl text-white z-30 hover:scale-105 transition-all" onClick={()=>navigate('/videos')}><IoClose/></motion.button>}
+      } }} initial={{ x:-100 }} className="fixed top-5 left-5 text-4xl text-white md:z-30 z-[11] hover:scale-105 transition-all" onClick={()=>navigate('/videos')}><IoClose/></motion.button>}
       </AnimatePresence>
       <iframe
-        className="relative w-[80vw] min-h-[70vh] rounded-md z-10"
+        className="relative md:w-[80vw] w-screen h-[80vh] md:min-h-[70vh] rounded-md z-10"
         src={src}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -39,7 +40,7 @@ function Detail({id, urlThumbnail, src }) {
           className="cursor-pointer fixed text-8xl text-white left-0 top-0 h-screen w-[10%] bg-gradient-to-l from-transparent to-black/50"
         >
           <motion.div
-            initial={{ x: -75, opacity: 0.5 }}
+            initial={{ x: isMobile ? 0 : -75, opacity: isMobile ? .8 : 0.5 }}
             whileHover={{ x: 0, opacity: 1 }}
             className="h-full flex items-center justify-center w-full"
           >
@@ -48,7 +49,7 @@ function Detail({id, urlThumbnail, src }) {
         </motion.div>
       )}
       {!toggleComments && (
-        <button onClick={()=>setToggleComments(true)} className="fixed bottom-2 right-2 p-2 flex items-center gap-2 text-sm bg-white rounded-md">
+        <button onClick={()=>setToggleComments(true)} className="fixed z-20 bottom-2 right-2 p-2 flex items-center gap-2 text-sm bg-white rounded-md">
           <GoCommentDiscussion /> Lihat Komentar
         </button>
       )}
