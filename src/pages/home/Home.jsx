@@ -29,11 +29,11 @@ function Home() {
   const [searchData, setSearchData] = useState([]);
   const [stateLoad, setStateLoad] = useState("init");
   const [searchQuery, setSearchQuery] = useState("");
-  const [toggleCreator,setToggleCreator] = useState(false)
-  const [modalCreator,setModalCreator] = useState({
-    is:false,
-    type:''
-  })
+  const [toggleCreator, setToggleCreator] = useState(false);
+  const [modalCreator, setModalCreator] = useState({
+    is: false,
+    type: "",
+  });
 
   async function handleSearch(e) {
     setSearchQuery(e.target.value);
@@ -81,7 +81,12 @@ function Home() {
         {toggleMenu && <MenuSection setToggleMenu={setToggleMenu} />}
       </AnimatePresence>
       <AnimatePresence>
-        {modalCreator.is && <CreatorModal modalCreator={modalCreator} setModalCreator={setModalCreator}/>}
+        {modalCreator.is && (
+          <CreatorModal
+            modalCreator={modalCreator}
+            setModalCreator={setModalCreator}
+          />
+        )}
       </AnimatePresence>
       <div className="flex text-2xl items-center justify-between gap-2">
         <div className="flex text-2xl items-center gap-4 py-5">
@@ -91,33 +96,80 @@ function Home() {
           >
             <RxHamburgerMenu />
           </button>
-          <p className="font-semibold text-base">Tokopedia Play</p>
+          {credentials ? (
+              <button onClick={()=>setToggleMenu(true)} className="w-[3rem] h-[3rem] rounded-full">
+                <img
+                  src={`https://api.dicebear.com/6.x/adventurer-neutral/svg?seed=${credentials.username}`}
+                  className="h-fit w-fit rounded-full"
+                  alt=""
+                />
+              </button>
+          ) : (
+            <p className="font-semibold text-base">Tokopedia Play</p>
+          )}
         </div>
         <div className="flex items-center gap-3">
           {credentials && (
-            <div className="relative">
-              <button onClick={()=>setToggleCreator(toggleCreator ? false : true)} className="p-2 border rounded-xl text-xs md:text-sm border-green-500 bg-green-500/30 text-green-500">
-                {isMobile ? 'Creator' : 'Creator Mode'}
-              </button>
-              <AnimatePresence>
-                {toggleCreator && (
-                <motion.div initial={{ x:100,opacity:0,scale:.5,y:-30 }} animate={{ x:0,opacity:1,scale:1,y:0 }} exit={{ x:100,opacity:0,scale:.5,y:-30 }} className="gap-2 z-10 absolute flex items-center justify-center -bottom-24 -left-[12rem] md:-left-[20rem] p-4 bg-[#232327] rounded-md">
-                  <motion.button onClick={()=>{setModalCreator({is:true,type:'add'});setToggleCreator(false)}} whileHover={{ scale:1.05 }} className="bg-white transition-all hover:bg-white/80 w-[5rem] md:text-sm md:w-[8rem] text-black p-1 rounded-md flex flex-col items-center gap-2">
-                    <MdAddBox />
-                    <p className="text-sm text-center">{isMobile ? 'Tambah' : 'Tambah Video'} </p>
-                  </motion.button>
-                  <motion.button onClick={()=>{setModalCreator({is:true,type:'edit'});setToggleCreator(false)}} whileHover={{ scale:1.05 }} className="bg-white transition-all hover:bg-white/80 w-[5rem] md:text-sm md:w-[8rem] text-black p-1 rounded-md flex flex-col items-center gap-2">
-                    <BiEdit />
-                    <p className="text-sm text-center">{isMobile ? 'Edit' : 'Edit Video'} </p>
-                  </motion.button>
-                  <motion.button onClick={()=>{setModalCreator({is:true,type:'delete'});setToggleCreator(false)}} whileHover={{ scale:1.05 }} className="bg-white transition-all hover:bg-white/80 w-[5rem] md:text-sm md:w-[8rem] text-black p-1 rounded-md flex flex-col items-center gap-2">
-                    <MdDeleteForever />
-                    <p className="text-sm text-center">{isMobile ? 'Hapus' : 'Hapus Video'} </p>
-                  </motion.button>
-                </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+            <>
+              <div className="relative">
+                <button
+                  onClick={() => setToggleCreator(toggleCreator ? false : true)}
+                  className="p-2 border rounded-xl text-xs md:text-sm border-green-500 bg-green-500/30 text-green-500"
+                >
+                  {isMobile ? "Creator" : "Creator Mode"}
+                </button>
+                <AnimatePresence>
+                  {toggleCreator && (
+                    <motion.div
+                      initial={{ x: 100, opacity: 0, scale: 0.5, y: -30 }}
+                      animate={{ x: 0, opacity: 1, scale: 1, y: 0 }}
+                      exit={{ x: 100, opacity: 0, scale: 0.5, y: -30 }}
+                      className="gap-2 z-10 absolute flex items-center justify-center -bottom-24 -left-[12rem] md:-left-[20rem] p-4 bg-[#232327] rounded-md"
+                    >
+                      <motion.button
+                        onClick={() => {
+                          setModalCreator({ is: true, type: "add" });
+                          setToggleCreator(false);
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        className="bg-white transition-all hover:bg-white/80 w-[5rem] md:text-sm md:w-[8rem] text-black p-1 rounded-md flex flex-col items-center gap-2"
+                      >
+                        <MdAddBox />
+                        <p className="text-sm text-center">
+                          {isMobile ? "Tambah" : "Tambah Video"}{" "}
+                        </p>
+                      </motion.button>
+                      <motion.button
+                        onClick={() => {
+                          setModalCreator({ is: true, type: "edit" });
+                          setToggleCreator(false);
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        className="bg-white transition-all hover:bg-white/80 w-[5rem] md:text-sm md:w-[8rem] text-black p-1 rounded-md flex flex-col items-center gap-2"
+                      >
+                        <BiEdit />
+                        <p className="text-sm text-center">
+                          {isMobile ? "Edit" : "Edit Video"}{" "}
+                        </p>
+                      </motion.button>
+                      <motion.button
+                        onClick={() => {
+                          setModalCreator({ is: true, type: "delete" });
+                          setToggleCreator(false);
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        className="bg-white transition-all hover:bg-white/80 w-[5rem] md:text-sm md:w-[8rem] text-black p-1 rounded-md flex flex-col items-center gap-2"
+                      >
+                        <MdDeleteForever />
+                        <p className="text-sm text-center">
+                          {isMobile ? "Hapus" : "Hapus Video"}{" "}
+                        </p>
+                      </motion.button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </>
           )}
           <button
             onClick={() => setToggleSearch(true)}

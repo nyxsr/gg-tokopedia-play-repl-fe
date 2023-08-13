@@ -223,7 +223,7 @@ function index({ setToggleMenu }) {
         ) : (
           <div>
             <img
-              src={`https://api.dicebear.com/6.x/adventurer/svg?seed=${credentials.username}`}
+              src={`https://api.dicebear.com/6.x/adventurer-neutral/svg?seed=${credentials.username}`}
               className="rounded-full mx-auto h-[8rem] w-[8rem]"
               alt=""
             />
