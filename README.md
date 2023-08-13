@@ -3,10 +3,10 @@
 [![GitHub stars](https://img.shields.io/github/stars/nyxsr/gg-tokopedia-play-repl-be)](https://github.com/nyxsr/gg-tokopedia-play-repl-be/stargazers)
 
 ## Documentation 📖
-- [About](#about)
-- [Features](#features)
-- [Installation](#installation)
-- [Dependencies](#dependencies)
+- [About](#what-is-this--)
+- [Features](#features-)
+- [Installation](#installation-)
+- [Dependencies](#dependencies-)
 
 ## What is this ? 👋
 
